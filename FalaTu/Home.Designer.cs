@@ -28,41 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.ChatDeConversas = new testexListBox.exListBox();
-            this.PessoasOnline = new testexListBox.exListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.HoraLbl = new System.Windows.Forms.Label();
+            this.DataLbl = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.PessoasOnline = new testexListBox.exListBox();
+            this.ChatDeConversas = new testexListBox.exListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ChatDeConversas
-            // 
-            this.ChatDeConversas.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.ChatDeConversas.FormattingEnabled = true;
-            this.ChatDeConversas.ItemHeight = 16;
-            this.ChatDeConversas.Location = new System.Drawing.Point(12, 12);
-            this.ChatDeConversas.Name = "ChatDeConversas";
-            this.ChatDeConversas.Size = new System.Drawing.Size(358, 420);
-            this.ChatDeConversas.TabIndex = 0;
-            // 
-            // PessoasOnline
-            // 
-            this.PessoasOnline.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.PessoasOnline.FormattingEnabled = true;
-            this.PessoasOnline.ItemHeight = 16;
-            this.PessoasOnline.Location = new System.Drawing.Point(376, 12);
-            this.PessoasOnline.Name = "PessoasOnline";
-            this.PessoasOnline.Size = new System.Drawing.Size(229, 342);
-            this.PessoasOnline.TabIndex = 1;
             // 
             // textBox1
             // 
@@ -86,8 +69,9 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.HoraLbl);
+            this.panel1.Controls.Add(this.DataLbl);
             this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -96,6 +80,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(157, 342);
             this.panel1.TabIndex = 4;
+            // 
+            // HoraLbl
+            // 
+            this.HoraLbl.AutoSize = true;
+            this.HoraLbl.Location = new System.Drawing.Point(23, 72);
+            this.HoraLbl.Name = "HoraLbl";
+            this.HoraLbl.Size = new System.Drawing.Size(46, 17);
+            this.HoraLbl.TabIndex = 7;
+            this.HoraLbl.Text = "label1";
+            // 
+            // DataLbl
+            // 
+            this.DataLbl.AutoSize = true;
+            this.DataLbl.Location = new System.Drawing.Point(23, 89);
+            this.DataLbl.Name = "DataLbl";
+            this.DataLbl.Size = new System.Drawing.Size(46, 17);
+            this.DataLbl.TabIndex = 6;
+            this.DataLbl.Text = "label1";
             // 
             // button5
             // 
@@ -106,15 +108,6 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Sobre o App";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Nome do Usuario";
             // 
             // button4
             // 
@@ -146,11 +139,35 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(17, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(48, 13);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(124, 57);
+            this.pictureBox1.Size = new System.Drawing.Size(61, 56);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // PessoasOnline
+            // 
+            this.PessoasOnline.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.PessoasOnline.FormattingEnabled = true;
+            this.PessoasOnline.ItemHeight = 16;
+            this.PessoasOnline.Location = new System.Drawing.Point(376, 12);
+            this.PessoasOnline.Name = "PessoasOnline";
+            this.PessoasOnline.Size = new System.Drawing.Size(229, 342);
+            this.PessoasOnline.TabIndex = 1;
+            // 
+            // ChatDeConversas
+            // 
+            this.ChatDeConversas.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.ChatDeConversas.FormattingEnabled = true;
+            this.ChatDeConversas.ItemHeight = 16;
+            this.ChatDeConversas.Location = new System.Drawing.Point(12, 12);
+            this.ChatDeConversas.Name = "ChatDeConversas";
+            this.ChatDeConversas.Size = new System.Drawing.Size(358, 420);
+            this.ChatDeConversas.TabIndex = 0;
             // 
             // Home
             // 
@@ -167,6 +184,7 @@
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
             this.Load += new System.EventHandler(this.Home_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -185,9 +203,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label HoraLbl;
+        private System.Windows.Forms.Label DataLbl;
+        private System.Windows.Forms.Timer timer1;
     }
 }

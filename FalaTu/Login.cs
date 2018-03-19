@@ -5,42 +5,60 @@ using System.IO;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FalaTu
 {
     public partial class Login : Form
     {
+
         public Login()
         {
             InitializeComponent();
         }
-        TcpClient Client = new TcpClient();
-        IPAddress address = IPAddress.Parse("127.0.0.1");
-        int port = 8007;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Client.Connect(address, port);
+            Thread response_thread = new Thread(Program.ListenServerResponse);
+            response_thread.IsBackground = true;
+            response_thread.Start();
         }
-
+        public static string LerEntre(string Completa, string Comeco, char Fim)
+        {
+            string getNameSub = Completa.Substring(Completa.IndexOf(Comeco) + Comeco.Length);
+            string sa = getNameSub.Split(Fim)[0];
+            return sa;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            Stream stream;
-            string msg = "-Login>" + textBox1.Text + "?Password=" + textBox2.Text;
-            stream = Client.GetStream();
-            byte[] by = Encoding.UTF8.GetBytes(msg.ToCharArray(), 0, msg.Length);
-            stream.Write(by, 0, by.Length);
-            stream.Flush();
-            NetworkStream nwStream = Client.GetStream();
-            byte[] buffer = new byte[Client.ReceiveBufferSize];
+            FalaTu.Program.clientSocket.Send(Encoding.ASCII.GetBytes("-Login>" + textBox1.Text + "?Password=" + textBox2.Text + "?ip=" + Program.myIp + ";"));
+            while(Program.ServerResposta == null){ }
+            if (LerEntre( Program.ServerResposta, "-Login>",'?') == "true")
+            {
+                Home.ID = LerEntre(Program.ServerResposta, "?ID=", ';');
+                Home homeLogin = new Home();
+                Home.Usuario = textBox1.Text;
+                homeLogin.Show();
+                this.Hide();
+            }else if (Program.ServerResposta == "-Login>false")
+            {
+                MessageBox.Show("Credenciais incorretas","FalaTu Chat",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                Application.Restart();
+            }
+            Program.ServerResposta = null;
+        }
 
-            int bytesRead = nwStream.Read(buffer, 0, Client.ReceiveBufferSize);
-            string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-            nwStream.Write(buffer, 0, bytesRead);
-            if (dataReceived == "error")
-                MessageBox.Show("Deu");
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Register RegisterWindow = new Register(this);
+            RegisterWindow.Show();
+            this.Hide();
         }
     }
 }

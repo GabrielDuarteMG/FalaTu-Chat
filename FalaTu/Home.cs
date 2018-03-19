@@ -25,6 +25,8 @@ namespace FalaTu
         static int port = 8007;
         private void Home_Load(object sender, EventArgs e)
         {
+            this.Text = "Home - " + Usuario;
+            timer1.Start();
             WebClient wc = new WebClient();
             byte[] bytes = wc.DownloadData("https://cdn3.iconfinder.com/data/icons/simple-files-1/128/Update-128.png");
             MemoryStream ms = new MemoryStream(bytes);
@@ -47,6 +49,17 @@ namespace FalaTu
             stream.Flush();
             AddMsg(textBox1.Text);
             textBox1.Text = "";
+        }
+
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DataLbl.Text = DateTime.Now.Day.ToString() + "/" + DateTime.Now.Month.ToString() + "/"+ DateTime.Now.Year.ToString(); 
+            HoraLbl.Text = DateTime.Now.ToString("hh:mm:ss");
         }
     }
 }
